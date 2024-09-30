@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>體適能不NG</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+        <noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+        <style>
+            .button.primary {
+                background-color: #9978cf;
+            }
+            .button.primary:hover {
+                background-color: #5e08e8; /* 深紫色 */
+            }
+            /* 選單項目懸浮效果 */
+            #nav ul li:not(.login-button):hover {
+                background-color: #9978cf !important; /* 深紫色 */
+            }
+            /* 指定所有連結的文字顏色 */
+            #nav ul li a {
+                color: white !important; /* 將文字顏色設置為白色 */
+            }
+        </style>
+    </head>
+    <body class="is-preload landing">
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <h1>體適能不NG</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">首頁</a></li>
+                        <li>
+                            <a href="#">體適能標準</a>
+                            <ul>
+                                <li><a href="{{ url_for('situp_rule') }}">仰臥起坐</a></li>
+                                <li><a href="{{ url_for('reversecrunch_rule') }}">仰臥捲腹</a></li>
+                                <li><a href="{{ url_for('jump_rule') }}">立定跳遠</a></li>
+                                <li><a href="{{ url_for('sit_rule') }}">坐姿體前彎</a></li>
+                                <li><a href="{{ url_for('knees_rule') }}">原地抬膝</a></li>
+                                <li><a href="{{ url_for('run_rule') }}">漸速折返跑</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('elements') }}">骨架動作分析</a></li>
+                        <li><a href="{{ url_for('record') }}">歷史紀錄</a></li>
+                        <li class="login-button"><a href="{{ url_for('signup') }}" class="button primary">登入</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <table>
+                <tr>
+                    <td><img src="{{ url_for('static', filename='images/1.png') }}" alt="仰臥起坐" width="400" height="300"></td>
+                    <td><img src="{{ url_for('static', filename='images/2.png') }}" alt="仰臥捲腹" width="400" height="300"></td>
+                    <td><img src="{{ url_for('static', filename='images/3.png') }}" alt="立定跳遠" width="400" height="300"></td>
+                </tr>
+                <tr>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('situp') }}'">仰臥起坐</button></td>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('reversecrunch') }}'">仰臥捲腹</button></td>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('jump') }}'">立定跳遠</button></td>
+                </tr>
+                <tr>
+                    <td><img src="{{ url_for('static', filename='images/4.png') }}" alt="坐姿體前彎" width="400" height="300"></td>
+                    <td><img src="{{ url_for('static', filename='images/5.png') }}" alt="原地抬膝" width="400" height="300"></td>
+                    <td><img src="{{ url_for('static', filename='images/6.png') }}" alt="漸速折返跑" width="400" height="300"></td>
+                </tr>
+                <tr>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('sit') }}'">坐姿體前彎</button></td>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('knees') }}'">原地抬膝</button></td>
+                    <td><button class="table-button" onclick="window.location.href='{{ url_for('run') }}'">漸速折返跑</button></td>
+                </tr>
+            </table>
+            <!-- Scripts -->
+            <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+            <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+        </div>
+    </body>
+</html>

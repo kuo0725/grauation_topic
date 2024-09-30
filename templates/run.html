@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>體適能不NG</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+    <style>
+        .button.primary {
+            background-color: #9978cf;
+        }
+        .button.primary:hover {
+            background-color: #5e08e8; /* 深紫色 */
+        }
+        #nav ul li:not(.login-button):hover {
+            background-color: #9978cf !important; /* 深紫色 */
+        }
+        #nav ul li a {
+            color: white !important; /* 將文字顏色設置為白色 */
+        }
+        .center-video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .video {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="is-preload landing">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <h1>體適能不NG</h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="home.html">首頁</a></li>
+                    <li>
+                        <a href="#">體適能標準</a>
+                        <ul>
+                            <li><a href="situp-rule.html">仰臥起坐</a></li>
+                            <li><a href="reversecrunch-rule.html">仰臥捲腹</a></li>
+                            <li><a href="jump-rule.html">立定跳遠</a></li>
+                            <li><a href="sit-rule.html">坐姿體前彎</a></li>
+                            <li><a href="knees-rule.html">原地抬膝</a></li>
+                            <li><a href="run-rule.html">漸速折返跑</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="elements.html">骨架動作分析</a></li>
+                    <li><a href="record.html">歷史紀錄</a></li>
+                    <li class="login-button"><a href="signup.html" class="button primary">登入</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="center-video">
+            <video id="preview" width="1080" height="600" autoplay muted></video>
+        </div>
+
+        <!-- 控制按钮 -->
+        <div class="controls">
+            <div id="startButton" class="button">Start</div>
+            <div id="stopButton" class="button">Stop</div>
+            <a id="downloadButton" class="button" download="RecordedVideo.webm">Download</a>
+        </div>
+
+        <!-- 录制视频 -->
+        <h2>Recording</h2>
+        <div class="video">
+            <video id="recording" width="160" height="120" controls></video>
+        </div>
+    </div>
+
+    <script>
+        let preview = document.getElementById("preview");
+        let recording = document.getElementById("recording");
+        let startButton = document.getElementById("startButton");
+        let stopButton = document.getElementById("stopButton");
+        let downloadButton = document.getElementById("downloadButton");
+        let dataChunks = [];
+        let recorder;
+
+        // 开始录制
+        function startRecording(stream) {
+            recorder = new MediaRecorder(stream);
+            recorder.ondataavailable = (event) => {
+                let data = event.data;
+                dataChunks.push(data);
+            };
+            recorder.start(1000);
+            console.log("Recording started...");
+        }
+
+        // 停止录制
+        stopButton.addEventListener("click", () => {
+            preview.srcObject.getTracks().forEach((track) => track.stop());
+            recorder.stop();
+
+            // 播放录制的视频
+            let recordedBlob = new Blob(dataChunks, { type: "video/webm" });
+            recording.src = URL.createObjectURL(recordedBlob);
+
+            // 设置下载链接
+            downloadButton.href = recording.src;
+        });
+
+        // 开始录制按钮
+        startButton.addEventListener("click", () => {
+            navigator.mediaDevices
+                .getUserMedia({
+                    audio: true,
+                    video: true,
+                })
+                .then((stream) => {
+                    preview.srcObject = stream;
+                    startRecording(stream);
+                })
+                .catch((err) => {
+                    console.error("Recording error: ", err);
+                });
+        });
+    </script>
+</body>
+</html>

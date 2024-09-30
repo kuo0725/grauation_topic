@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>體適能不NG</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+    <style>
+        .button.primary {
+            background-color: #9978cf;
+        }
+        .button.primary:hover {
+            background-color: #5e08e8; /* 深紫色 */
+        }
+        /* 選單項目懸浮效果 */
+        #nav ul li:not(.login-button):hover {
+            background-color: #9978cf !important; /* 深紫色 */
+        }
+        /* 指定所有連結的文字顏色 */
+        #nav ul li a {
+            color: white !important; /* 將文字顏色設置為白色 */
+        }
+    </style>
+</head>
+<body class="is-preload landing">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <h1>體適能不NG</h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">首頁</a></li>
+                    <li>
+                        <a href="#">體適能標準</a>
+                        <ul>
+                            <li><a href="{{ url_for('situp_rule') }}">仰臥起坐</a></li>
+                            <li><a href="{{ url_for('reversecrunch_rule') }}">仰臥捲腹</a></li>
+                            <li><a href="{{ url_for('jump_rule') }}">立定跳遠</a></li>
+                            <li><a href="{{ url_for('sit_rule') }}">坐姿體前彎</a></li>
+                            <li><a href="{{ url_for('knees_rule') }}">原地抬膝</a></li>
+                            <li><a href="{{ url_for('run_rule') }}">漸速折返跑</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('elements') }}">骨架動作分析</a></li>
+                    <li><a href="{{ url_for('record') }}">歷史紀錄</a></li>
+                    <li class="login-button"><a href="{{ url_for('signup') }}" class="button primary">登入</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <br><br><br><br><h1>測驗規則:</h1>
+        <table>
+            <tr><td>受測者平躺，雙手肘完全伸直，指尖放置於近身之第一標示線內緣，雙膝屈曲呈九十度，雙腳平貼於地面，完成預備動作。</td></tr>
+            <tr><td>利用腹肌收縮緩慢捲曲使肩胛骨離開地面，同時雙手手指沿著地面向前延伸直到觸及間隔十一點四公分之第二標示線內緣，並維持捲腹動作待下一個指示音響起。</td></tr>
+            <tr><td>腹肌放鬆，仰臥回復至預備動作，完成完整上、下動作，計算為一次；受測者聽從指示音，盡最大努力完成最多反覆次數。</td></tr>
+            <tr><td>測驗過程中，雙腳均離開地面、借力（不得用手臂擺動協助捲腹動作，不得用肘部觸地向上推動或雙手觸碰身體任一部位完成捲腹動作）、未跟上固定每分鐘四十拍之速度或雙手最長指尖未觸摸第二標示線者，皆判定為失敗。</td></tr>
+            <tr><td>當受測者失敗一次時，協測者則舉手比出數字一；失敗二次比出數字二。當失敗二次或完成七十五次反覆次數，即結束測驗，並記錄完成次數。</td></tr>
+        </table>
+
+        <!-- Scripts -->
+        <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+    </div>
+</body>
+</html>

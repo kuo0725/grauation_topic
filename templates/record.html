@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>飲食紀錄</title>
+    <meta charset="utf-8" />
+    <style>
+        .clipped {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: SlateBlue;
+            -webkit-clip-path: circle(22.1% at 13% 2%);
+            clip-path: circle(22.1% at 13% 2%);
+            top: -10px;
+            left: -10px;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        } 
+        h1 {
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 35px;
+            left: 30px;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        #navbar {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 30px;
+            background-color: #fffcfc32;
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        #myImage {
+            width: 50px; /* 設置圖片寬度 */
+            position: absolute;
+            top: 5%;
+            right: 20px;
+            cursor: pointer; /* 添加滑鼠游標效果 */
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        .content-container {
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 居中对齐 */
+            top: 100%;
+            left: 50%;
+            transform: translate(0%, -110%);
+        }
+    </style>
+</head>
+<body>
+    <div class="clipped">
+        <h1>飲食紀錄</h1>       
+    </div>
+    <img id="myImage" src="{{ url_for('static', filename='images/menu.png') }}" alt="圖片">
+    <span id="navbar">
+        <a href="{{ url_for('home') }}">首頁</a>
+    </span>
+    <script>
+        document.getElementById("myImage").addEventListener("click", function() {
+            var navbar = document.getElementById("navbar");
+            console.log("Click event triggered");
+            if (navbar.style.display == "none") {
+                navbar.style.display = "block";
+            } else {
+                navbar.style.display = "none";
+            }
+        });
+    </script>
+    <div class="content-container">
+        <form action="{{ url_for('save_record') }}" method="post">
+            <table>
+                <tr>
+                    <td>運動名稱:</td>
+                    <td>
+                        <select name="sport" id="sport-select">
+                            <option value="">選擇運動</option>
+                            <option value="in_run">室內跑步</option>
+                            <option value="out_run">室外跑步</option>
+                            <option value="in_swim">室外游泳</option>
+                            <option value="out_swim">室內游泳</option>
+                            <option value="flywheel">飛輪</option>
+                            <option value="out_walk">室外走路</option>
+                            <option value="out_bike">室外自行車</option>
+                            <option value="Yoga">瑜珈</option>
+                            <option value="Lajin">拉筋</option>
+                            <option value="core_exercise">核心運動</option>
+                            <option value="dance">舞蹈</option>
+                            <option value="fitness">健身</option>
+                            <option value="in_bike">室內腳踏車</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <p><input name="begin" type="text" placeholder="開始時間" onfocus="this.placeholder=''" onblur="this.placeholder='開始時間'"></p>
+            <p><input name="time" type="text" placeholder="持續時間" onfocus="this.placeholder=''" onblur="this.placeholder='持續時間'"></p>
+            <p><input name="kal" type="text" placeholder="消耗熱量" onfocus="this.placeholder=''" onblur="this.placeholder='消耗熱量'"></p>
+            <p><input name="average" type="text" placeholder="平均心率" onfocus="this.placeholder=''" onblur="this.placeholder='平均心率'"></p>
+            <p><input name="max" type="text" placeholder="最大心率" onfocus="this.placeholder=''" onblur="this.placeholder='最大心率'"></p>
+            <p><input type="submit" value="儲存"></p>
+        </form>
+    </div>
+</body>
+</html>
